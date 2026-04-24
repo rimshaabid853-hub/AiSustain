@@ -11,7 +11,6 @@ import json
 import random
 import os
 import requests
-import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
