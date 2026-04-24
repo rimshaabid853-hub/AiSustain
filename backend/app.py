@@ -98,7 +98,11 @@ try:
         r.xadd(f"live:{ind}", data)
 except Exception as e:
     print("Redis error:", e)
-
+r = None
+try:
+    r = redis.Redis(host='localhost', port=6379, decode_responses=True)
+except:
+    print("Redis not available, running without it")
 # ALWAYS AVAILABLE FALLBACK DATA
 live_data = {
     ind: {
