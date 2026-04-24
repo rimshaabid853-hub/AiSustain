@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SustainAI • Energy Intelligence Platform</title>
+
+  <!-- External libs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts loaded in CSS via @import -->
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+
+  <!-- Our stylesheet -->
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+<!-- Custom cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- Animated BG canvas -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+
+    <!-- Brand -->
+    <a href="#" class="brand" onclick="switchTab(0);return false;">
+      <div class="brand-icon"><i class="fa-solid fa-leaf"></i></div>
+      <div>
+        <div class="brand-name">SustainAI</div>
+        <div class="brand-sub">Energy Intelligence</div>
+      </div>
+    </a>
+
+    <!-- Nav links -->
+    <div class="nav-links">
+      <button class="nav-btn active-nav" data-tab="0" onclick="switchTab(0)">Home</button>
+      <button class="nav-btn" data-tab="1" onclick="switchTab(1)">Dashboard</button>
+      <button class="nav-btn" data-tab="2" onclick="switchTab(2)">Predict</button>
+      <button class="nav-btn" data-tab="3" onclick="switchTab(3)">AI Chat</button>
+      <button class="nav-btn" data-tab="4" onclick="switchTab(4)">Compare</button>
+      <button class="nav-btn" data-tab="5" onclick="switchTab(5)">Live Demo</button>
+    </div>
+
+    <!-- Right side -->
+    <div class="nav-right">
+      <div class="live-badge">
+        <span class="live-dot"></span> LIVE
+      </div>
+      <!-- Day / Night Toggle -->
+      <label class="theme-toggle" title="Toggle day / night">
+        <input type="checkbox" id="theme-switch" onchange="toggleTheme()">
+        <div class="toggle-track">
+          <div class="toggle-thumb">
+            <span id="theme-icon">🌙</span>
+          </div>
+          <span class="toggle-label-dark">DAY</span>
+        </div>
+      </label>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════════════════════════ -->
+<div class="container">
+
+  <!-- ─── HOME ─────────────────────────────────────────────── -->
+  <div id="section-0" class="section active">
+
+    <div class="hero entry">
+      <div class="hero-grid"></div>
+      <div class="hero-glow-tl"></div>
+      <div class="hero-glow-br"></div>
+
+      <div style="position:relative;z-index:2;">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          AI-DRIVEN SUSTAINABILITY ANALYTICS
+        </div>
+
+        <h1 class="hero-title">
+          Transform Industrial Energy Into<br>
+          <span class="hl">Climate Intelligence</span>
+        </h1>
+
+        <p class="hero-desc">
+          Monitor carbon intensity, forecast consumption, and benchmark
+          sectors with a unified AI layer built for sustainability teams.
+        </p>
+
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="switchTab(1)">
+            <i class="fa-solid fa-gauge-high"></i> Open Dashboard
+          </button>
+          <button class="btn-secondary" onclick="switchTab(5)">
+            <i class="fa-solid fa-play"></i> Live Demo Panel
+          </button>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-val">3</div>
+            <div class="hero-stat-label">Industry Models</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-val">30</div>
+            <div class="hero-stat-label">Day Forecast</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-val">8K+</div>
+            <div class="hero-stat-label">Data Records</div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /hero -->
+
+    <div class="features-grid entry entry-d1">
+      <div class="feat-card" style="--fcolor:#39ff14">
+        <div class="feat-num">01 /</div>
+        <div class="feat-icon">⚡</div>
+        <div class="feat-title">Real-Time Monitoring</div>
+        <div class="feat-desc">Live energy and CO₂ streams across Steel, Concrete, and Textile with instant anomaly alerts.</div>
+      </div>
+      <div class="feat-card" style="--fcolor:#00cfff">
+        <div class="feat-num">02 /</div>
+        <div class="feat-icon">🤖</div>
+        <div class="feat-title">ML Prediction Engine</div>
+        <div class="feat-desc">Linear regression models trained on real datasets forecast up to 30 days of consumption.</div>
+      </div>
+      <div class="feat-card" style="--fcolor:#b464ff">
+        <div class="feat-num">03 /</div>
+        <div class="feat-icon">💬</div>
+        <div class="feat-title">AI Co-Pilot</div>
+        <div class="feat-desc">Natural language Q&amp;A on carbon reduction strategies, efficiency gains, and optimisation.</div>
+      </div>
+      <div class="feat-card" style="--fcolor:#ff3c00">
+        <div class="feat-num">04 /</div>
+        <div class="feat-icon">📊</div>
+        <div class="feat-title">Industry Benchmarking</div>
+        <div class="feat-desc">Side-by-side energy and carbon comparison across all three industrial sectors.</div>
+      </div>
+    </div>
+
+  </div><!-- /section-0 -->
+
+
+  <!-- ─── DASHBOARD ─────────────────────────────────────────── -->
+  <div id="section-1" class="section">
+
+    <div class="section-header entry">
+      <div class="section-eyebrow">// Operations Center</div>
+      <h2 class="section-title">Live Sustainability Dashboard</h2>
+      <p class="section-desc">Select an industry and load the latest energy and emissions intelligence.</p>
+      <div class="chip-group">
+        <button class="chip active" data-industry="steel"    onclick="selectIndustry('steel')">⚙️ Steel</button>
+        <button class="chip"        data-industry="concrete" onclick="selectIndustry('concrete')">🏗️ Concrete</button>
+        <button class="chip"        data-industry="textile"  onclick="selectIndustry('textile')">🧵 Textile</button>
+      </div>
+    </div>
+
+    <div class="kpi-grid entry entry-d1">
+      <div class="kpi-card">
+        <div class="kpi-card-top">
+          <div class="kpi-label">Average Energy</div>
+          <div class="kpi-icon green"><i class="fa-solid fa-bolt"></i></div>
+        </div>
+        <div class="kpi-val" id="energy-val">—</div>
+        <div class="kpi-unit">KWH</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-top">
+          <div class="kpi-label">Average CO₂</div>
+          <div class="kpi-icon red"><i class="fa-solid fa-cloud"></i></div>
+        </div>
+        <div class="kpi-val" id="carbon-val">—</div>
+        <div class="kpi-unit">TONNES CO₂</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-top">
+          <div class="kpi-label">Total Records</div>
+          <div class="kpi-icon blue"><i class="fa-solid fa-database"></i></div>
+        </div>
+        <div class="kpi-val" id="records-val">—</div>
+        <div class="kpi-unit">DATA POINTS</div>
+      </div>
+    </div>
+
+    <div class="chart-grid entry entry-d2">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Energy Trend</div>
+          <span class="chart-badge badge-green">LIVE VIEW</span>
+        </div>
+        <canvas id="lineChart" height="220"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Energy vs CO₂</div>
+          <span class="chart-badge badge-red">IMPACT MIX</span>
+        </div>
+        <canvas id="barChart" height="220"></canvas>
+      </div>
+    </div>
+
+  </div><!-- /section-1 -->
+
+
+  <!-- ─── PREDICTION ────────────────────────────────────────── -->
+  <div id="section-2" class="section">
+
+    <div class="section-header entry">
+      <div class="section-eyebrow">// Forecast Lab</div>
+      <h2 class="section-title">AI Prediction Engine</h2>
+      <p class="section-desc">Generate near-term consumption forecasts powered by trained industry models.</p>
+      <div class="chip-group">
+        <button class="chip active" data-predict="steel"    onclick="runPrediction('steel')">⚙️ Predict Steel</button>
+        <button class="chip"        data-predict="concrete" onclick="runPrediction('concrete')">🏗️ Predict Concrete</button>
+        <button class="chip"        data-predict="textile"  onclick="runPrediction('textile')">🧵 Predict Textile</button>
+      </div>
+    </div>
+
+    <div class="range-card entry entry-d1">
+      <div class="range-header">
+        <div class="range-label">Prediction Horizon</div>
+        <div class="range-val" id="slider-value">10</div>
+      </div>
+      <input type="range" min="1" max="30" value="10"
+             id="prediction-slider"
+             oninput="updateSlider(this.value)">
+      <div class="range-ticks"><span>1 DAY</span><span>15 DAYS</span><span>30 DAYS</span></div>
+    </div>
+
+    <div id="pred-result" class="pred-result-card hidden entry">
+      <div class="pred-label">Average Forecast Energy</div>
+      <div class="pred-val" id="future-val">0</div>
+      <div class="pred-unit">KWH · <span id="pred-industry-name">Steel</span> Industry</div>
+    </div>
+
+    <div id="pred-chart-container" class="chart-card hidden mt-4 entry">
+      <div class="chart-header">
+        <div class="chart-title">Projected Energy Curve</div>
+        <span class="chart-badge badge-purple">FORECAST OUTPUT</span>
+      </div>
+      <canvas id="futureChart" height="240"></canvas>
+    </div>
+
+  </div><!-- /section-2 -->
+
+
+  <!-- ─── AI CHAT ───────────────────────────────────────────── -->
+  <div id="section-3" class="section">
+
+    <div class="section-header entry">
+      <div class="section-eyebrow">// AI Co-Pilot</div>
+      <h2 class="section-title">Sustainability Assistant</h2>
+      <p class="section-desc">Ask practical questions on energy savings, carbon reduction, and operational optimisation.</p>
+    </div>
+
+    <div class="chat-wrap entry entry-d1">
+      <div class="chat-messages" id="chat-history">
+        <div class="chat-msg">
+          <div class="chat-avatar avatar-ai"><i class="fa-solid fa-leaf"></i></div>
+          <div class="chat-bubble bubble-ai">
+            System online. Ask me anything about energy efficiency, carbon reduction strategies,
+            or sustainability optimisation for Steel, Concrete, or Textile industries. 🌱
+          </div>
+        </div>
+      </div>
+      <div class="chat-input-row">
+        <input class="chat-input" id="chat-input" type="text"
+               placeholder="Ask about energy efficiency, carbon strategy, optimisation…">
+        <button class="chat-send" onclick="askAI()">
+          <i class="fa-solid fa-paper-plane"></i> SEND
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /section-3 -->
+
+
+  <!-- ─── COMPARE ───────────────────────────────────────────── -->
+  <div id="section-4" class="section">
+
+    <div class="section-header entry">
+      <div class="section-header-row">
+        <div>
+          <div class="section-eyebrow">// Benchmark Studio</div>
+          <h2 class="section-title">Industry Comparison Matrix</h2>
+          <p class="section-desc">Side-by-side energy demand and carbon benchmarks across all sectors.</p>
+        </div>
+        <button class="btn-primary" onclick="loadComparison()">
+          <i class="fa-solid fa-code-compare"></i> Compare
+        </button>
+      </div>
+    </div>
+
+    <div class="compare-grid entry entry-d1">
+      <div class="compare-card" style="--ccolor:#39ff14;">
+        <div class="compare-name">⚙️ Steel Industry</div>
+        <div class="compare-stat">
+          <div class="compare-stat-label">Avg Energy</div>
+          <div class="compare-stat-val" id="steel-energy">—</div>
+        </div>
+        <div class="compare-stat">
+          <div class="compare-stat-label">Avg CO₂</div>
+          <div class="compare-stat-val" id="steel-carbon">—</div>
+        </div>
+      </div>
+      <div class="compare-card" style="--ccolor:#00cfff;">
+        <div class="compare-name">🏗️ Concrete Industry</div>
+        <div class="compare-stat">
+          <div class="compare-stat-label">Avg Energy</div>
+          <div class="compare-stat-val" id="concrete-energy">—</div>
+        </div>
+        <div class="compare-stat">
+          <div class="compare-stat-label">Avg CO₂</div>
+          <div class="compare-stat-val" id="concrete-carbon">—</div>
+        </div>
+      </div>
+      <div class="compare-card" style="--ccolor:#ff3c00;">
+        <div class="compare-name">🧵 Textile Industry</div>
+        <div class="compare-stat">
+          <div class="compare-stat-label">Avg Energy</div>
+          <div class="compare-stat-val" id="textile-energy">—</div>
+        </div>
+        <div class="compare-stat">
+          <div class="compare-stat-label">Avg CO₂</div>
+          <div class="compare-stat-val" id="textile-carbon">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-grid entry entry-d2">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Energy Benchmark</div>
+          <span class="chart-badge badge-blue">CROSS-INDUSTRY</span>
+        </div>
+        <canvas id="energyComparisonChart" height="220"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">CO₂ Benchmark</div>
+          <span class="chart-badge badge-red">EMISSIONS VIEW</span>
+        </div>
+        <canvas id="carbonComparisonChart" height="220"></canvas>
+      </div>
+    </div>
+
+  </div><!-- /section-4 -->
+
+
+  <!-- ─── LIVE DEMO PANEL ───────────────────────────────────── -->
+  <div id="section-5" class="section">
+    <div id="demo-panel">
+
+      <!-- HUD decoration -->
+      <div class="demo-hud-lines"></div>
+      <div class="demo-corner tl"></div>
+      <div class="demo-corner tr"></div>
+      <div class="demo-corner bl"></div>
+      <div class="demo-corner br"></div>
+
+      <!-- Header -->
+      <div class="demo-header">
+        <div class="demo-title-group">
+          <div class="demo-logo"><i class="fa-solid fa-microchip"></i></div>
+          <div>
+            <div class="demo-title">LIVE MACHINE DEMO PANEL</div>
+            <div class="demo-subtitle">// real-time simulation · ml predictions · industry monitoring</div>
+          </div>
+        </div>
+        <div class="status-row">
+          <div class="status-pill s-running" id="demo-status-steel">
+            <span class="s-dot"></span>STEEL: RUNNING
+          </div>
+          <div class="status-pill s-warning" id="demo-status-concrete">
+            <span class="s-dot"></span>CONCRETE: WARNING
+          </div>
+          <div class="status-pill s-running" id="demo-status-textile">
+            <span class="s-dot"></span>TEXTILE: RUNNING
+          </div>
+        </div>
+      </div>
+
+      <!-- Ticker -->
+      <div class="ticker">
+        <div class="ticker-scroll" id="ticker-scroll">
+          <!-- Block 1 -->
+          <span class="ticker-item">STEEL ENERGY: <span id="t-steel-e">2847</span> kWh</span>
+          <span class="ticker-item">STEEL CO₂: <span id="t-steel-c">1.23</span> t</span>
+          <span class="ticker-item">CONCRETE ENERGY: <span id="t-con-e">4521</span> kWh</span>
+          <span class="ticker-item">CONCRETE CO₂: <span id="t-con-c">2.89</span> t</span>
+          <span class="ticker-item">TEXTILE ENERGY: <span id="t-tex-e">1234</span> kWh</span>
+          <span class="ticker-item">TEXTILE CO₂: <span id="t-tex-c">0.67</span> t</span>
+          <span class="ticker-item">MODEL ACCURACY: <span>94.2%</span></span>
+          <span class="ticker-item">SYSTEM HEALTH: <span>98.7%</span></span>
+          <!-- Block 2 (duplicate for seamless loop) -->
+          <span class="ticker-item">STEEL ENERGY: <span>2847</span> kWh</span>
+          <span class="ticker-item">STEEL CO₂: <span>1.23</span> t</span>
+          <span class="ticker-item">CONCRETE ENERGY: <span>4521</span> kWh</span>
+          <span class="ticker-item">CONCRETE CO₂: <span>2.89</span> t</span>
+          <span class="ticker-item">TEXTILE ENERGY: <span>1234</span> kWh</span>
+          <span class="ticker-item">TEXTILE CO₂: <span>0.67</span> t</span>
+          <span class="ticker-item">MODEL ACCURACY: <span>94.2%</span></span>
+          <span class="ticker-item">SYSTEM HEALTH: <span>98.7%</span></span>
+        </div>
+      </div>
+
+      <!-- Industry monitor cards -->
+      <div class="monitor-grid">
+
+        <!-- Steel -->
+        <div class="monitor-card">
+          <div class="monitor-ind-name" style="color:#39ff14;">
+            ⚙️ STEEL PLANT
+            <span class="status-pill s-running" style="font-size:10px;padding:4px 10px;">
+              <span class="s-dot"></span>RUNNING
+            </span>
+          </div>
+          <div class="monitor-stats">
+            <div class="m-stat">
+              <div class="m-stat-key">Energy</div>
+              <div class="m-stat-val" id="live-steel-energy">2,847</div>
+              <div class="m-stat-unit">kWh</div>
+            </div>
+            <div class="m-stat">
+              <div class="m-stat-key">CO₂ Emission</div>
+              <div class="m-stat-val" id="live-steel-co2">1.23</div>
+              <div class="m-stat-unit">tCO₂</div>
+            </div>
+          </div>
+          <div class="monitor-bar-row">
+            <span>EFFICIENCY</span><span id="steel-pct">81%</span>
+          </div>
+          <div class="monitor-track">
+            <div class="monitor-fill" id="steel-bar"
+                 style="width:81%;background:linear-gradient(90deg,#39ff14,#22bb00);">
+            </div>
+          </div>
+        </div>
+
+        <!-- Concrete -->
+        <div class="monitor-card">
+          <div class="monitor-ind-name" style="color:#00cfff;">
+            🏗️ CONCRETE PLANT
+            <span class="status-pill s-warning" style="font-size:10px;padding:4px 10px;">
+              <span class="s-dot"></span>WARN
+            </span>
+          </div>
+          <div class="monitor-stats">
+            <div class="m-stat">
+              <div class="m-stat-key">Energy</div>
+              <div class="m-stat-val" id="live-concrete-energy">4,521</div>
+              <div class="m-stat-unit">kWh</div>
+            </div>
+            <div class="m-stat">
+              <div class="m-stat-key">CO₂ Emission</div>
+              <div class="m-stat-val" id="live-concrete-co2">2.89</div>
+              <div class="m-stat-unit">tCO₂</div>
+            </div>
+          </div>
+          <div class="monitor-bar-row">
+            <span>EFFICIENCY</span><span id="concrete-pct">67%</span>
+          </div>
+          <div class="monitor-track">
+            <div class="monitor-fill" id="concrete-bar"
+                 style="width:67%;background:linear-gradient(90deg,#ffb700,#ff8800);">
+            </div>
+          </div>
+        </div>
+
+        <!-- Textile -->
+        <div class="monitor-card">
+          <div class="monitor-ind-name" style="color:#ff3c00;">
+            🧵 TEXTILE PLANT
+            <span class="status-pill s-running" style="font-size:10px;padding:4px 10px;">
+              <span class="s-dot"></span>RUNNING
+            </span>
+          </div>
+          <div class="monitor-stats">
+            <div class="m-stat">
+              <div class="m-stat-key">Energy</div>
+              <div class="m-stat-val" id="live-textile-energy">1,234</div>
+              <div class="m-stat-unit">kWh</div>
+            </div>
+            <div class="m-stat">
+              <div class="m-stat-key">CO₂ Emission</div>
+              <div class="m-stat-val" id="live-textile-co2">0.67</div>
+              <div class="m-stat-unit">tCO₂</div>
+            </div>
+          </div>
+          <div class="monitor-bar-row">
+            <span>EFFICIENCY</span><span id="textile-pct">92%</span>
+          </div>
+          <div class="monitor-track">
+            <div class="monitor-fill" id="textile-bar"
+                 style="width:92%;background:linear-gradient(90deg,#ff3c00,#ff0000);">
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /monitor-grid -->
+
+
+    </div><!-- /demo-panel -->
+  </div><!-- /section-5 -->
+
+</div><!-- /container -->
+
+<!-- Our JS -->
+<script src="/main.js"></script>
+
+</body>
+</html>
