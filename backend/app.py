@@ -11,7 +11,6 @@ import json
 import random
 import os
 import requests
-
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -93,11 +92,11 @@ model = industries['steel']['model']
 import os
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+r = None
 try:
-    if 'r' in globals():
-        r.xadd(f"live:{ind}", data)
-except Exception as e:
-    print("Redis error:", e)
+    r = redis.Redis(host='localhost', port=6379, decode_responses=True)
+except:
+    print("Redis not available, running without it")
 
 # ALWAYS AVAILABLE FALLBACK DATA
 live_data = {
