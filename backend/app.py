@@ -88,7 +88,6 @@ df = industries['steel']['df']
 model = industries['steel']['model']
 
 # OpenRouter API configuration (replaces openai SDK to avoid pydantic_core DLL block)
-import os
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 r = None
@@ -286,3 +285,4 @@ if __name__ == "__main__":
     print("🚀 SustainAI Server Running...")
     print("🌐 Open: http://127.0.0.1:5000")
     app.run(debug=True, port=5000)
+
