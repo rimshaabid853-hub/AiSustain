@@ -199,7 +199,7 @@ function selectIndustry(ind) {
 
 async function loadDashboard() {
   try {
-    const res  = await fetch(`http://127.0.0.1:5000/industry/data?industry=${selectedIndustry}`);
+    const res  = await fetch(`https://aisustain.onrender.com/industry/data?industry=${selectedIndustry}`);
     const data = await res.json();
     if (data.error) throw new Error(data.error);
     document.getElementById('energy-val').textContent  = Number(data.energy).toLocaleString();
@@ -274,7 +274,7 @@ async function runPrediction(industry) {
     industry.charAt(0).toUpperCase() + industry.slice(1);
 
   try {
-    const res  = await fetch(`http://127.0.0.1:5000/predict?industry=${industry}&days=${predictionDays}`);
+    const res  = await fetch(`https://aisustain.onrender.com/predict?industry=${industry}&days=${predictionDays}`);
     const data = await res.json();
     if (data.error) throw new Error(data.error);
     showPrediction(data.future_energy, data.days, data.predictions);
@@ -330,7 +330,7 @@ async function askAI() {
   const typingId = appendTyping('chat-history');
 
   try {
-    const res   = await fetch('http://127.0.0.1:5000/chat', {
+    const res   = await fetch('https://aisustain.onrender.com/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question: q })
@@ -387,7 +387,7 @@ async function loadComparison() {
 
   for (const ind of inds) {
     try {
-      const res  = await fetch(`http://127.0.0.1:5000/industry/data?industry=${ind}`);
+      const res  = await fetch(`https://aisustain.onrender.com/industry/data?industry=${ind}`);
       const data = await res.json();
       if (!data.error) fallback[ind] = { e: data.energy, c: data.carbon };
     } catch (_) {}
@@ -487,7 +487,7 @@ async function runDemoPredict() {
   const ind = demoSelIndustry;
 
   try {
-    const res  = await fetch(`http://127.0.0.1:5000/predict?industry=${ind}&days=${days}`);
+    const res  = await fetch(`https://aisustain.onrender.com/predict?industry=${ind}&days=${days}`);
     const data = await res.json();
     if (data.error) throw new Error();
     clearInterval(prog);
@@ -564,7 +564,7 @@ async function askDemoAI() {
   const typingId = appendTyping('demo-chat-msgs');
 
   try {
-    const res  = await fetch('http://127.0.0.1:5000/chat', {
+    const res  = await fetch('https://aisustain.onrender.com/chat', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question: q })
     });
